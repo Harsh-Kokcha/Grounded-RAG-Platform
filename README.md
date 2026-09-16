@@ -1,4 +1,4 @@
-# RAG Platform
+# Grounded RAG Platform
 
 This project is an end-to-end RAG platform that lets users ask questions about a document corpus. It retrieves relevant evidence using semantic and keyword search, reranks it, sends the evidence to Claude to generate a cited answer, and checks whether the response is grounded in the source documents.
 
