@@ -45,7 +45,6 @@ class Settings:
     dense_top_k: int = int(os.getenv("DENSE_TOP_K", "20"))
     bm25_top_k: int = int(os.getenv("BM25_TOP_K", "20"))
     rerank_top_k: int = int(os.getenv("RERANK_TOP_K", "3"))
-    hybrid_alpha: float = float(os.getenv("HYBRID_ALPHA", "0.5"))  # weight: dense vs bm25
 
     # --- Reranker ---
     # Set to a real cross-encoder model name (e.g. "BAAI/bge-reranker-base")

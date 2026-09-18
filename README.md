@@ -1,5 +1,7 @@
 # Grounded RAG Platform
 
+**[→ Visual, end-to-end walkthrough of the pipeline](https://harsh-kokcha.github.io/Grounded-RAG-Platform/)** — every stage explained with a diagram, including the actual Claude API call, the guardrail catching a fabricated sentence, and the eval scorecard. *(Live once GitHub Pages is enabled for this repo — Settings → Pages → Source: `main` / `docs`.)*
+
 This project is an end-to-end RAG platform that lets users ask questions about a document corpus. It retrieves relevant evidence using semantic and keyword search, reranks it, sends the evidence to Claude to generate a cited answer, and checks whether the response is grounded in the source documents.
 
 A production-shaped Retrieval-Augmented Generation system: hybrid (dense +
@@ -287,8 +289,11 @@ the lightweight proxy used here, not a regression in answer quality.
 
 - **"Why hybrid retrieval instead of just dense?"** — dense embeddings miss
   exact terms (order IDs, product names, error codes); BM25 misses
-  paraphrased questions. `hybrid.py` merges both result sets by a weighted
-  score (`HYBRID_ALPHA`) before reranking.
+  paraphrased questions. `hybrid.py` merges both result sets with
+  reciprocal rank fusion (RRF) before reranking — dense cosine scores and
+  BM25 scores live on incompatible scales, so the two ranked lists are
+  fused by rank position (`score(d) = Σ 1 / (60 + rank + 1)`) rather than
+  a weighted blend of raw scores.
 - **"How do you know it's not hallucinating?"** — every generated claim
   must cite a chunk index; `guardrails.py` checks the citations are
   actually present in the retrieved chunks and computes a faithfulness
