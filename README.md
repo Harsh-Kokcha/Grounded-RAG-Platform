@@ -1,6 +1,6 @@
 # Grounded RAG Platform
 
-**[→ Visual, end-to-end walkthrough of the pipeline](https://harsh-kokcha.github.io/Grounded-RAG-Platform/)** — every stage explained with a diagram, including the actual Claude API call, the guardrail catching a fabricated sentence, and the eval scorecard. *(Live once GitHub Pages is enabled for this repo — Settings → Pages → Source: `main` / `docs`.)*
+**[→ Visual, end-to-end walkthrough of the pipeline](https://harsh-kokcha.github.io/Grounded-RAG-Platform/)** — every stage explained with a diagram, including the actual Claude API call, the guardrail catching a fabricated sentence, and the eval scorecard.
 
 This project is an end-to-end RAG platform that lets users ask questions about a document corpus. It retrieves relevant evidence using semantic and keyword search, reranks it, sends the evidence to Claude to generate a cited answer, and checks whether the response is grounded in the source documents.
 
